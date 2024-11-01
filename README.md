@@ -27,11 +27,15 @@ storefront \
    ```bash
    pipenv install
    ```
-3. **Run the development server**:
+3. **Activate the virtual environment**:
+   ```bash
+    pipenv shell
+   ```
+4. **Run the development server**:
     ```bash
     python manage.py runserver 8000
     ```
-4. **Access the application**:
+5. **Access the application**:
     - Open a browser and go to  http://localhost:8000/store/products/ to view the product search.
     - Go to http://localhost:8000/admin/ to access the Django admin interface with the following credentials:
         - Username: `admin`
