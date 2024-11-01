@@ -15,10 +15,10 @@
         <form method="get">
             <!-- Search Field -->
             <label for="search">Description:</label>
-            <input type="text" name="search" placeholder="Search products by description" value="{{ search_query }}" style="width: 350px;">
+            <input type="text" name="search" placeholder="Search products by description" value="{{ search_query }}" style="width: 300px;">
 
             <!-- Category Dropdown -->
-            <label for="categories" style="margin-left: 20px;" >Categories:</label>
+            <label for="categories" style="margin-left: 10px;" >Categories:</label>
             <select name="category">
                 <option value="">All Categories</option>
                 {% for category in categories %}
@@ -27,7 +27,7 @@
             </select>
             
             <!-- Tag Checkboxes -->
-            <label for="tags" style="margin-left: 20px;" >Tags:</label>
+            <label for="tags" style="margin-left: 10px;" >Tags:</label>
             {% for tag in tags %}
             <label>
                 <input type="checkbox" name="tags" value="{{ tag.id }}" {% if tag.id|stringformat:"s" in selected_tags %}checked{% endif %}>
@@ -37,9 +37,9 @@
              
 
             <!-- Submit Button -->
-            <button type="submit" style="margin-left: 20px;">Filter</button>
+            <button type="submit" style="margin-left: 5px;">Filter</button>
             <!-- Clear Button -->
-            <a href="{{ clear_filters_url }}" style="margin-left: 10px;">
+            <a href="{{ clear_filters_url }}" style="margin-left: 5px;">
                 <button type="button">Clear All Filters</button>
             </a>
         </form>
