@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Store</title>
+</head>
+
+<body>
+    <header>
+        <h1>Product Search</h1>
+    </header>
+    <main>
+        <form method="get">
+            <!-- Search Field -->
+            <label for="search">Description:</label>
+            <input type="text" name="search" placeholder="Search products by description" value="{{ search_query }}" style="width: 350px;">
+
+            <!-- Category Dropdown -->
+            <label for="categories" style="margin-left: 20px;" >Categories:</label>
+            <select name="category">
+                <option value="">All Categories</option>
+                {% for category in categories %}
+                    <option value="{{ category.id }}" {% if category.id|stringformat:"s" == selected_category|stringformat:"s" %}selected{% endif %}>{{ category.title }}</option>
+                {% endfor %}
+            </select>
+            
+            <!-- Tag Checkboxes -->
+            <label for="tags" style="margin-left: 20px;" >Tags:</label>
+            {% for tag in tags %}
+            <label>
+                <input type="checkbox" name="tags" value="{{ tag.id }}" {% if tag.id|stringformat:"s" in selected_tags %}checked{% endif %}>
+                {{ tag.label }}
+            </label>
+            {% endfor %}
+             
+
+            <!-- Submit Button -->
+            <button type="submit" style="margin-left: 20px;">Filter</button>
+            <!-- Clear Button -->
+            <a href="{{ clear_filters_url }}" style="margin-left: 10px;">
+                <button type="button">Clear All Filters</button>
+            </a>
+        </form>
+
+        <!-- Displaying Products -->
+        <ul>
+            {% for product in products %}
+            <li>
+                <h3>{{ product.title }}</h3>
+                <p>{{ product.description }}</p>
+                <p>Price: ${{ product.unit_price }}</p>
+                <p>Category: {{ product.category.title }}</p>
+                <p>Tags: {% for tag in product.tags.all %} {{ tag.label }} {% if not forloop.last %}, {% endif %} {% endfor %}</p>
+            </li>
+            {% empty %}
+                <li>No products found.</li>
+            {% endfor %}
+        </ul>
+
+    </main>
+</body>
+
+</html>
